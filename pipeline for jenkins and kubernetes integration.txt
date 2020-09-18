@@ -22,6 +22,16 @@ node{
 }
                 sh "docker push sridatha/springboot"
     }
+    /**
+    stage("Deploy Application in K82 Cluster"){
+        kubernetesDeploy(
+            configs: 'springBootMongo.yml',
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+            )
+        
+    }
+    **/
     stage("Deploy To Kubernetes Cluster"){
         sh "kubectl apply -f springBootMongo.yml"
     }
